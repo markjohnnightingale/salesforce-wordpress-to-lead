@@ -888,7 +888,9 @@ function salesforce_form_shortcode($atts) {
 				if( !empty($options['forms'][$form]['returl']) ){
                     
                     if ($options['forms'][$form]['returl_php'] === 'on') {
-    					wp_redirect( $options['forms'][$form]['returl'] );
+                        $redirectUrl = $options['forms'][$form]['returl'];
+                        $redirectUrl = wp_nonce_url( $redirectUrl, 'download_whitepaper' );
+    					wp_redirect( $redirectUrl );
     					exit;
                     } else {
     					?>
